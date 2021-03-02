@@ -1,6 +1,6 @@
 <?php
 
-namespace HDSSolutions\Finpar\Inventory;
+namespace HDSSolutions\Finpar\Customers;
 
 class Facade extends \Illuminate\Support\Facades\Facade {
     /**

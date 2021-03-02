@@ -21,6 +21,8 @@ class CustomersModuleServiceProvider extends ModuleServiceProvider {
         $this->loadRoutesFrom( module_path('routes/customers.php') );
         // load views
         $this->loadViewsFrom( module_path('resources/views'), 'customers' );
+        // load translations
+        $this->loadTranslationsFrom( module_path('resources/lang'), 'customers' );
         // load migrations
         $this->loadMigrationsFrom( module_path('database/migrations') );
         // load seeders
