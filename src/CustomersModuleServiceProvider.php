@@ -2,13 +2,16 @@
 
 namespace HDSSolutions\Finpar;
 
-// use HDSSolutions\Finpar\Commands\Mix;
 use HDSSolutions\Laravel\Modules\ModuleServiceProvider;
 
 class CustomersModuleServiceProvider extends ModuleServiceProvider {
 
+    protected array $middlewares = [
+        \HDSSolutions\Finpar\Http\Middleware\CustomersMenu::class,
+    ];
+
     private $commands = [
-        // Mix::class,
+        // \HDSSolutions\Finpar\Commands\Mix::class,
     ];
 
     public function bootEnv():void {
@@ -37,7 +40,7 @@ class CustomersModuleServiceProvider extends ModuleServiceProvider {
         // register singleton
         app()->singleton('customers', fn() => new Customers);
         // register commands
-        // $this->commands( $this->commands );
+        $this->commands( $this->commands );
         // merge configuration
         $this->mergeConfigFrom( module_path('config/customers.php'), 'customers' );
     }
