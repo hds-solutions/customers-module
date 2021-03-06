@@ -16,7 +16,7 @@ class CustomersMenu {
     public function handle($request, Closure $next) {
         // create a submenu
         $sub = backend()->menu()
-            ->add(__('customers::nav'), [
+            ->add(__('customers::customers.nav'), [
                 'icon'  => 'cogs',
             ])->data('priority', 700);
 
