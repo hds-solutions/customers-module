@@ -1,120 +1,41 @@
 @include('backend::components.errors')
 
-<div class="form-row form-group align-items-center">
-    <label class="col-12 col-md-3 control-label mb-0">@lang('customers::customer.firstname.0')</label>
-    <div class="col-11 col-md-8 col-lg-6 col-xl-4">
-        <input name="firstname" type="text" required
-            value="{{ isset($resource) && !old('firstname') ? $resource->firstname : old('firstname') }}"
-            class="form-control {{ $errors->has('firstname') ? 'is-danger' : '' }}"
-            placeholder="@lang('customers::customer.firstname._')">
-    </div>
-    {{-- <div class="col-1">
-        <i class="fas fa-info-circle ml-2 cursor-help" data-toggle="tooltip" data-placement="right"
-            title="@lang('customers::customer.firstname.?')"></i>
-    </div> --}}
-    {{-- <label class="col-12 control-label small">@lang('customers::customer.firstname.?')</label> --}}
-</div>
+<x-backend-form-text :resource="$resource ?? null" name="firstname" required
+    label="{{ __('customers::customer.firstname.0') }}"
+    placeholder="{{ __('customers::customer.firstname._') }}"
+    {{-- helper="{{ __('customers::customer.firstname.?') }}" --}} />
 
-<div class="form-row form-group align-items-center">
-    <label class="col-12 col-md-3 control-label mb-0">@lang('customers::customer.lastname.0')</label>
-    <div class="col-11 col-md-8 col-lg-6 col-xl-4">
-        <input name="lastname" type="text"
-            value="{{ isset($resource) && !old('lastname') ? $resource->lastname : old('lastname') }}"
-            class="form-control {{ $errors->has('lastname') ? 'is-danger' : '' }}"
-            placeholder="@lang('customers::customer.lastname._')">
-    </div>
-    {{-- <div class="col-1">
-        <i class="fas fa-info-circle ml-2 cursor-help" data-toggle="tooltip" data-placement="right"
-            title="@lang('customers::customer.lastname.?')"></i>
-    </div> --}}
-    {{-- <label class="col-12 control-label small">@lang('customers::customer.lastname.?')</label> --}}
-</div>
+<x-backend-form-text :resource="$resource ?? null" name="lastname"
+    label="{{ __('customers::customer.lastname.0') }}"
+    placeholder="{{ __('customers::customer.lastname._') }}"
+    {{-- helper="{{ __('customers::customer.lastname.?') }}" --}} />
 
-<div class="form-row form-group align-items-center">
-    <label class="col-12 col-md-3 control-label mb-0">@lang('customers::customer.ftid.0')</label>
-    <div class="col-11 col-md-8 col-lg-6 col-xl-4">
-        <input name="ftid" type="text" required
-            value="{{ isset($resource) && !old('ftid') ? $resource->ftid : old('ftid') }}"
-            class="form-control {{ $errors->has('ftid') ? 'is-danger' : '' }}"
-            placeholder="@lang('customers::customer.ftid._')">
-    </div>
-    {{-- <div class="col-1">
-        <i class="fas fa-info-circle ml-2 cursor-help" data-toggle="tooltip" data-placement="right"
-            title="@lang('customers::customer.ftid.?')"></i>
-    </div> --}}
-    {{-- <label class="col-12 control-label small">@lang('customers::customer.ftid.?')</label> --}}
-</div>
+<x-backend-form-text :resource="$resource ?? null" name="ftid" required
+    label="{{ __('customers::customer.ftid.0') }}"
+    placeholder="{{ __('customers::customer.ftid._') }}"
+    {{-- helper="{{ __('customers::customer.ftid.?') }}" --}} />
 
-<div class="form-row form-group align-items-center">
-    <label class="col-12 col-md-3 control-label mb-0">@lang('customers::customer.business_name.0')</label>
-    <div class="col-11 col-md-8 col-lg-6 col-xl-4">
-        <input name="business_name" type="text"
-            value="{{ isset($resource) && !old('business_name') ? $resource->business_name : old('business_name') }}"
-            class="form-control {{ $errors->has('business_name') ? 'is-danger' : '' }}"
-            placeholder="@lang('customers::customer.business_name._')">
-    </div>
-    {{-- <div class="col-1">
-        <i class="fas fa-info-circle ml-2 cursor-help" data-toggle="tooltip" data-placement="right"
-            title="@lang('customers::customer.business_name.?')"></i>
-    </div> --}}
-    {{-- <label class="col-12 control-label small">@lang('customers::customer.business_name.?')</label> --}}
-</div>
+<x-backend-form-text :resource="$resource ?? null" name="business_name"
+    label="{{ __('customers::customer.business_name.0') }}"
+    placeholder="{{ __('customers::customer.business_name._') }}"
+    {{-- helper="{{ __('customers::customer.business_name.?') }}" --}} />
 
-<div class="form-row form-group align-items-center">
-    <label class="col-12 col-md-3 control-label mb-0">@lang('customers::customer.email.0')</label>
-    <div class="col-11 col-md-8 col-lg-6 col-xl-4">
-        <input name="email" type="email"
-            value="{{ isset($resource) && !old('email') ? $resource->email : old('email') }}"
-            class="form-control {{ $errors->has('email') ? 'is-danger' : '' }}"
-            placeholder="@lang('customers::customer.email._')">
-    </div>
-    {{-- <div class="col-1">
-        <i class="fas fa-info-circle ml-2 cursor-help" data-toggle="tooltip" data-placement="right"
-            title="@lang('customers::customer.email.?')"></i>
-    </div> --}}
-    {{-- <label class="col-12 control-label small">@lang('customers::customer.email.?')</label> --}}
-</div>
+<x-backend-form-email :resource="$resource ?? null" name="email"
+    label="{{ __('customers::customer.email.0') }}"
+    placeholder="{{ __('customers::customer.email._') }}"
+    {{-- helper="{{ __('customers::customer.email.?') }}" --}} />
 
-<div class="form-row form-group align-items-center">
-    <label class="col-12 col-md-3 control-label mb-0">@lang('customers::customer.phone.0')</label>
-    <div class="col-11 col-md-8 col-lg-6 col-xl-4">
-        <input name="phone" type="text"
-            value="{{ isset($resource) && !old('phone') ? $resource->phone : old('phone') }}"
-            class="form-control {{ $errors->has('phone') ? 'is-danger' : '' }}"
-            placeholder="@lang('customers::customer.phone._')">
-    </div>
-    {{-- <div class="col-1">
-        <i class="fas fa-info-circle ml-2 cursor-help" data-toggle="tooltip" data-placement="right"
-            title="@lang('customers::customer.phone.?')"></i>
-    </div> --}}
-    {{-- <label class="col-12 control-label small">@lang('customers::customer.phone.?')</label> --}}
-</div>
+<x-backend-form-text :resource="$resource ?? null" name="phone"
+    label="{{ __('customers::customer.phone.0') }}"
+    placeholder="{{ __('customers::customer.phone._') }}"
+    {{-- helper="{{ __('customers::customer.phone.?') }}" --}} />
 
-<div class="form-row form-group d-flex align-items-center">
-    <label class="col-12 col-md-3 control-label m-0">@lang('customers::customer.gender.0')</label>
+<x-backend-form-select :resource="$resource ?? null" name="gender"
+    :values="\HDSSolutions\Finpar\Models\Customer::GENDERS"
+    label="{{ __('customers::customer.gender.0') }}"
+    placeholder="{{ __('customers::customer.gender._') }}"
+    {{-- helper="{{ __('customers::customer.gender.?') }}" --}} />
 
-    <div class="col-12 col-md-9 col-xl-3">
-        <select name="gender"
-            value="{{ isset($resource) && !old('gender') ? $resource->genderRaw : old('gender') }}"
-            class="form-control selectpicker {{ $errors->has('gender') ? 'is-danger' : '' }}"
-            placeholder="@lang('customers::customer.gender._')">
-            <option value="" selected disabled hidden>@lang('customers::customer.gender.0')</option>
-            @foreach([
-                ''          => __('customers::customer.gender.unset'),
-                'male'      => __('customers::customer.gender.male'),
-                'female'    => __('customers::customer.gender.female'),
-            ] as $gender => $name)
-            <option value="{{ $gender }}"
-                @if (isset($resource) && !old('gender') && $resource->gender == $gender ||
-                    old('gender') == $gender || (!isset($resource) && !old('gender') && $gender == '')) selected @endif>{{ $name }}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
-
-<div class="form-row">
-    <div class="offset-0 offset-md-3 col-12 col-md-9">
-        <button type="submit" class="btn btn-success">@lang('customers::customers.save')</button>
-        <a href="{{ route('backend.customers') }}" class="btn btn-danger">@lang('customers::customers.cancel')</a>
-    </div>
-</div>
+<x-backend-form-controls
+    submit="customers::customers.save"
+    cancel="customers::customers.cancel" cancel-route="backend.customers" />

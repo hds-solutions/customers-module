@@ -7,6 +7,12 @@ use HDSSolutions\Finpar\Traits\BelongsToCompany;
 abstract class X_Customer extends Base\Model {
     use BelongsToCompany;
 
+    const GENDERS = [
+        ''          => 'customers::customer.gender.unset',
+        'male'      => 'customers::customer.gender.male',
+        'female'    => 'customers::customer.gender.female',
+    ];
+
     protected array $orderBy = [
         'name'      => 'ASC',
     ];
