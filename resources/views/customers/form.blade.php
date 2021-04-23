@@ -10,6 +10,17 @@
     placeholder="{{ __('customers::customer.lastname._') }}"
     {{-- helper="{{ __('customers::customer.lastname.?') }}" --}} />
 
+<x-backend-form-text :resource="$resource ?? null" name="documentno"
+    label="{{ __('customers::customer.documentno.0') }}"
+    placeholder="{{ __('customers::customer.documentno._') }}"
+    {{-- helper="{{ __('customers::customer.documentno.?') }}" --}} />
+
+<x-backend-form-select :resource="$resource ?? null" name="gender"
+    :values="\HDSSolutions\Finpar\Models\Person::GENDERS"
+    label="{{ __('customers::customer.gender.0') }}"
+    placeholder="{{ __('customers::customer.gender._') }}"
+    {{-- helper="{{ __('customers::customer.gender.?') }}" --}} />
+
 <x-backend-form-text :resource="$resource ?? null" name="ftid" required
     label="{{ __('customers::customer.ftid.0') }}"
     placeholder="{{ __('customers::customer.ftid._') }}"
@@ -20,21 +31,20 @@
     placeholder="{{ __('customers::customer.business_name._') }}"
     {{-- helper="{{ __('customers::customer.business_name.?') }}" --}} />
 
-<x-backend-form-email :resource="$resource ?? null" name="email"
+<x-backend-form-email :resource="$resource ?? null" name="email" required
     label="{{ __('customers::customer.email.0') }}"
     placeholder="{{ __('customers::customer.email._') }}"
     {{-- helper="{{ __('customers::customer.email.?') }}" --}} />
 
-<x-backend-form-text :resource="$resource ?? null" name="phone"
+<x-backend-form-text :resource="$resource ?? null" name="phone" required
     label="{{ __('customers::customer.phone.0') }}"
     placeholder="{{ __('customers::customer.phone._') }}"
     {{-- helper="{{ __('customers::customer.phone.?') }}" --}} />
 
-<x-backend-form-select :resource="$resource ?? null" name="gender"
-    :values="\HDSSolutions\Finpar\Models\Customer::GENDERS"
-    label="{{ __('customers::customer.gender.0') }}"
-    placeholder="{{ __('customers::customer.gender._') }}"
-    {{-- helper="{{ __('customers::customer.gender.?') }}" --}} />
+<x-backend-form-amount :resource="$resource ?? null" name="credit"
+    label="{{ __('customers::customer.credit.0') }}"
+    placeholder="{{ __('customers::customer.credit._') }}"
+    {{-- helper="{{ __('customers::customer.credit.?') }}" --}} />
 
 <x-backend-form-controls
     submit="customers::customers.save"

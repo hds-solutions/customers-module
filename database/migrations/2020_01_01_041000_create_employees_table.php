@@ -4,7 +4,7 @@ use HDSSolutions\Finpar\Blueprints\BaseBlueprint as Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomersTable extends Migration {
+class CreateEmployeesTable extends Migration {
     /**
      * Run the migrations.
      *
@@ -18,16 +18,10 @@ class CreateCustomersTable extends Migration {
         $schema->blueprintResolver(fn($table, $callback) => new Blueprint($table, $callback));
 
         // create table
-        $schema->create('customers', function(Blueprint $table) {
-            $table->id();
-            $table->foreignTo('Company');
-            $table->string('firstname');
-            $table->string('lastname')->nullable();
-            $table->string('ftid');
-            $table->string('business_name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->enum('gender', [ 'male', 'female' ])->nullable();
+        $schema->create('employees', function(Blueprint $table) {
+            $table->foreignTo('People', 'id');
+            $table->primary([ 'id' ]);
+            $table->amount('salary');
         });
     }
 
@@ -37,7 +31,7 @@ class CreateCustomersTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('employees');
     }
 
 }

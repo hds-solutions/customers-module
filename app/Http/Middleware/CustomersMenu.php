@@ -22,7 +22,8 @@ class CustomersMenu {
 
         $this
             // append items to submenu
-            ->customers($sub);
+            ->customers($sub)
+            ->providers($sub);
 
         // continue witn next middleware
         return $next($request);
@@ -33,6 +34,16 @@ class CustomersMenu {
             $menu->add(__('customers::customers.nav'), [
                 'route'     => 'backend.customers',
                 'icon'      => 'customers'
+            ]);
+
+        return $this;
+    }
+
+    private function providers(&$menu) {
+        if (Route::has('backend.providers'))
+            $menu->add(__('customers::providers.nav'), [
+                'route'     => 'backend.providers',
+                'icon'      => 'providers'
             ]);
 
         return $this;

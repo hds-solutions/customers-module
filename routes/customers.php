@@ -1,6 +1,9 @@
 <?php
 
-use HDSSolutions\Finpar\Http\Controllers\CustomerController;
+use HDSSolutions\Finpar\Http\Controllers\{
+    CustomerController,
+    ProviderController,
+};
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -13,5 +16,9 @@ Route::group([
     Route::resource('customers',        CustomerController::class,  $name_prefix)
         ->parameters([ 'customers' => 'resource' ])
         ->name('index', 'backend.customers');
+
+    Route::resource('providers',        ProviderController::class,  $name_prefix)
+        ->parameters([ 'providers' => 'resource' ])
+        ->name('index', 'backend.providers');
 
 });

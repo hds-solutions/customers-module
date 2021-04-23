@@ -3,12 +3,12 @@
 namespace HDSSolutions\Finpar\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use HDSSolutions\Finpar\DataTables\CustomerDataTable as DataTable;
+use HDSSolutions\Finpar\DataTables\ProviderDataTable as DataTable;
 use HDSSolutions\Finpar\Http\Request;
-use HDSSolutions\Finpar\Models\Customer as Resource;
+use HDSSolutions\Finpar\Models\Provider as Resource;
 use Illuminate\Database\QueryException;
 
-class CustomerController extends Controller {
+class ProviderController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +24,7 @@ class CustomerController extends Controller {
         if ($request->ajax()) return $dataTable->ajax();
 
         // return view with dataTable
-        return $dataTable->render('customers::customers.index', [ 'count' => Resource::count() ]);
+        return $dataTable->render('customers::providers.index', [ 'count' => Resource::count() ]);
     }
 
     /**
@@ -34,7 +34,7 @@ class CustomerController extends Controller {
      */
     public function create() {
         // show create form
-        return view('customers::customers.create');
+        return view('customers::providers.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class CustomerController extends Controller {
             // redirect to popup callback
             view('backend::components.popup-callback', compact('resource')) :
             // redirect to resources list
-            redirect()->route('backend.customers');
+            redirect()->route('backend.providers');
     }
 
     /**
@@ -70,7 +70,7 @@ class CustomerController extends Controller {
      */
     public function show(Resource $resource) {
         // redirect to list
-        return redirect()->route('backend.customers');
+        return redirect()->route('backend.providers');
     }
 
     /**
@@ -81,7 +81,7 @@ class CustomerController extends Controller {
      */
     public function edit(Resource $resource) {
         // show edit form
-        return view('customers::customers.edit', compact('resource'));
+        return view('customers::providers.edit', compact('resource'));
     }
 
     /**
@@ -103,7 +103,7 @@ class CustomerController extends Controller {
                 ->withInput();
 
         // redirect to list
-        return redirect()->route('backend.customers');
+        return redirect()->route('backend.providers');
     }
 
     /**
@@ -120,7 +120,7 @@ class CustomerController extends Controller {
             // redirect with errors
             return back();
         // redirect to list
-        return redirect()->route('backend.customers');
+        return redirect()->route('backend.providers');
     }
 
 }
