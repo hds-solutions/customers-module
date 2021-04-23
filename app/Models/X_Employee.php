@@ -10,6 +10,8 @@ abstract class X_Employee extends Base\Model {
 
     public $incrementing = false;
 
+    protected $with = [ 'identity' ];
+
     protected $fillable = [
         'salary',
     ];

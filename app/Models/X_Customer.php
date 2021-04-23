@@ -10,6 +10,8 @@ abstract class X_Customer extends Base\Model {
 
     public $incrementing = false;
 
+    protected $with = [ 'identity' ];
+
     protected array $orderBy = [
         'business_name' => 'ASC',
     ];
