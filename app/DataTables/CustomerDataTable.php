@@ -7,10 +7,6 @@ use Yajra\DataTables\Html\Column;
 
 class CustomerDataTable extends Base\DataTable {
 
-    protected array $with = [
-        'identity',
-    ];
-
     public function __construct() {
         parent::__construct(
             Resource::class,
@@ -30,10 +26,10 @@ class CustomerDataTable extends Base\DataTable {
             Column::make('business_name')
                 ->title( __('customers::customer.business_name.0') ),
 
-            Column::make('identity.lastname')
+            Column::make('lastname')
                 ->title( __('customers::customer.lastname.0') ),
 
-            Column::make('identity.firstname')
+            Column::make('firstname')
                 ->title( __('customers::customer.firstname.0') ),
 
             Column::make('actions'),
