@@ -17,15 +17,18 @@ abstract class X_Customer extends Base\Model {
     protected $fillable = [
         'ftid',
         'business_name',
-        'has_credit',
-        'credit',
+        'credit_limit',
     ];
 
     protected static array $rules = [
         'ftid'          => [ 'required' ],
         'business_name' => [ 'required' ],
-        'has_credit'    => [ 'required', 'boolean' ],
-        'credit'        => [ 'sometimes', 'nullable', 'min:0' ],
+        'credit_limit'  => [ 'sometimes', 'nullable', 'min:0' ],
     ];
+
+    public function getHasCreditEnabledAttribute():bool {
+        // null: no credit enabled, 0: unlimited credit enabled, > 0: credit enabled
+        return $this->credit_limit !== null;
+    }
 
 }
