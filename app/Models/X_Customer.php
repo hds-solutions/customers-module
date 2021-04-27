@@ -31,4 +31,16 @@ abstract class X_Customer extends Base\Model {
         return $this->credit_limit !== null;
     }
 
+    public function hasCreditEnabled():bool {
+        return $this->hasCreditEnabled;
+    }
+
+    public function getHasUnlimitedCreditAttribute():bool {
+        return $this->credit_limit === 0;
+    }
+
+    public function hasUnlimitedCredit():bool {
+        return $this->hasUnlimitedCredit;
+    }
+
 }
