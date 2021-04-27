@@ -22,6 +22,7 @@ class CreateCustomersTable extends Migration {
             $table->foreignTo('People', 'id', 'cascade')->primary();
             $table->string('ftid');
             $table->string('business_name')->nullable();
+            $table->boolean('has_credit')->default(false);
             $table->amount('credit')->nullable();
         });
     }

@@ -17,12 +17,14 @@ abstract class X_Customer extends Base\Model {
     protected $fillable = [
         'ftid',
         'business_name',
+        'has_credit',
         'credit',
     ];
 
     protected static array $rules = [
         'ftid'          => [ 'required' ],
         'business_name' => [ 'required' ],
+        'has_credit'    => [ 'required', 'boolean' ],
         'credit'        => [ 'sometimes', 'nullable', 'min:0' ],
     ];
 
