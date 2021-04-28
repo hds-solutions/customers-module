@@ -19,12 +19,14 @@ abstract class X_Customer extends Base\Model implements AsPerson {
         'ftid',
         'business_name',
         'credit_limit',
+        'grace_days',
     ];
 
     protected static array $rules = [
         'ftid'          => [ 'required' ],
         'business_name' => [ 'required' ],
         'credit_limit'  => [ 'sometimes', 'nullable', 'min:0' ],
+        'grace_days'    => [ 'sometimes', 'nullable', 'numeric', 'min:0' ],
     ];
 
     public function getHasCreditEnabledAttribute():bool {
