@@ -38,6 +38,15 @@ abstract class X_Customer extends Base\Model implements AsPerson {
         return $this->hasCreditEnabled;
     }
 
+    public function getCreditAvailableAttribute():int {
+        // if has unlimited credit, return maximun integer
+        return $this->has_unlimited_credit ? PHP_INT_MAX :
+            // return credit limit - sum(unpaid invoices amount) of this partnerable
+            $this->credit_limit - Invoice::ofPartnerable($this)->paid(false)
+                // only pending amount (total - paid_amount)
+                ->sum(fn($invoice) => $invoice->total - $invoice->paid_amount);
+    }
+
     public function getHasUnlimitedCreditAttribute():bool {
         return $this->credit_limit === 0;
     }
