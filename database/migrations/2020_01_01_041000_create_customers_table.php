@@ -23,7 +23,7 @@ class CreateCustomersTable extends Migration {
             $table->string('ftid');
             $table->string('business_name')->nullable();
             $table->amount('credit_limit')->nullable();
-            $table->unsignedTinyint('grace_days')->default(0);
+            $table->unsignedTinyInteger('grace_days')->default(0);
         });
     }
 
