@@ -19,13 +19,17 @@ abstract class X_Customer extends Base\Model implements AsPerson {
         'ftid',
         'business_name',
         'credit_limit',
+        'credit_used',
         'grace_days',
     ];
+
+    protected $with = [ 'identity' ];
 
     protected static array $rules = [
         'ftid'          => [ 'required' ],
         'business_name' => [ 'required' ],
         'credit_limit'  => [ 'sometimes', 'nullable', 'min:0' ],
+        'credit_used'   => [ 'sometimes', 'nullable', 'min:0' ],
         'grace_days'    => [ 'sometimes', 'nullable', 'numeric', 'min:0' ],
     ];
 
@@ -39,6 +43,8 @@ abstract class X_Customer extends Base\Model implements AsPerson {
     }
 
     public function getCreditAvailableAttribute():int {
+        // TODO: use credit_limit - credit_used value
+
         // if has unlimited credit, return maximun integer
         return $this->has_unlimited_credit ? PHP_INT_MAX :
             // return credit limit - sum(unpaid invoices amount) of this partnerable

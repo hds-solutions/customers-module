@@ -15,6 +15,8 @@ abstract class X_Employee extends Base\Model implements AsPerson {
         'salary',
     ];
 
+    protected $with = [ 'identity' ];
+
     protected static array $rules = [
         'salary'    => [ 'required', 'numeric', 'min:0' ],
     ];

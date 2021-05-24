@@ -20,6 +20,8 @@ abstract class X_Provider extends Base\Model implements AsPerson {
         'business_name',
     ];
 
+    protected $with = [ 'identity' ];
+
     protected static array $rules = [
         'ftid'          => [ 'required' ],
         'business_name' => [ 'required' ],
