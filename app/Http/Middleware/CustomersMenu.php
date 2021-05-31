@@ -5,14 +5,8 @@ namespace HDSSolutions\Finpar\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Route;
 
-class CustomersMenu {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
+class CustomersMenu extends Base\Menu {
+
     public function handle($request, Closure $next) {
         // create a submenu
         $sub = backend()->menu()
@@ -30,7 +24,7 @@ class CustomersMenu {
     }
 
     private function customers(&$menu) {
-        if (Route::has('backend.customers'))
+        if (Route::has('backend.customers') && $this->can('customers'))
             $menu->add(__('customers::customers.nav'), [
                 'route'     => 'backend.customers',
                 'icon'      => 'customers'
@@ -40,7 +34,7 @@ class CustomersMenu {
     }
 
     private function providers(&$menu) {
-        if (Route::has('backend.providers'))
+        if (Route::has('backend.providers') && $this->can('providers'))
             $menu->add(__('customers::providers.nav'), [
                 'route'     => 'backend.providers',
                 'icon'      => 'providers'
