@@ -10,8 +10,10 @@ class CustomersPermissionsSeeder extends Base\PermissionsSeeder {
 
     protected function permissions():array {
         return [
+            $this->resource('people'),
             $this->resource('customers'),
             $this->resource('providers'),
+            $this->resource('employees'),
         ];
     }
 
