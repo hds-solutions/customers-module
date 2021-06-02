@@ -100,6 +100,7 @@
                     {{-- helper="{{ __('customers::provider.ftid.?') }}" --}} />
 
                 <x-backend-form-text :resource="$resource->provider ?? null" name="provider[business_name]"
+                    field="business_name"
                     label="{{ __('customers::provider.business_name.0') }}"
                     placeholder="{{ __('customers::provider.business_name._') }}"
                     {{-- helper="{{ __('customers::provider.business_name.?') }}" --}} />

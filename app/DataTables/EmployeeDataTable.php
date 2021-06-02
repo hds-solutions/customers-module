@@ -2,26 +2,26 @@
 
 namespace HDSSolutions\Finpar\DataTables;
 
-use HDSSolutions\Finpar\Models\Person as Resource;
+use HDSSolutions\Finpar\Models\Employee as Resource;
 use Yajra\DataTables\Html\Column;
 
-class PersonDataTable extends Base\DataTable {
+class EmployeeDataTable extends Base\DataTable {
 
-    // protected array $with = [
-    //     'customer',
-    // ];
+    protected array $with = [
+        'identity',
+    ];
 
     public function __construct() {
         parent::__construct(
             Resource::class,
-            route('backend.people'),
+            route('backend.employees'),
         );
     }
 
     protected function getColumns() {
         return [
             Column::computed('id')
-                ->title( __('customers::person.id.0') )
+                ->title( __('customers::employee.id.0') )
                 ->hidden(),
 
             Column::make('documentno')
@@ -33,11 +33,10 @@ class PersonDataTable extends Base\DataTable {
             Column::make('firstname')
                 ->title( __('customers::person.firstname.0') ),
 
-            Column::make('email')
-                ->title( __('customers::person.email.0') ),
-
-            Column::make('phone')
-                ->title( __('customers::person.phone.0') ),
+            Column::make('salary')
+                ->title( __('customers::employee.salary.0') )
+                ->renderRaw('view:employee')
+                ->data( view('customers::employees.datatable.salary')->render() ),
 
             Column::make('actions'),
         ];

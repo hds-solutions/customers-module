@@ -3,11 +3,11 @@
 namespace HDSSolutions\Finpar\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use HDSSolutions\Finpar\DataTables\ProviderDataTable as DataTable;
+use HDSSolutions\Finpar\DataTables\EmployeeDataTable as DataTable;
 use HDSSolutions\Finpar\Http\Request;
-use HDSSolutions\Finpar\Models\Provider as Resource;
+use HDSSolutions\Finpar\Models\Employee as Resource;
 
-class ProviderController extends Controller {
+class EmployeeController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +23,7 @@ class ProviderController extends Controller {
         if ($request->ajax()) return $dataTable->ajax();
 
         // return view with dataTable
-        return $dataTable->render('customers::providers.index', [ 'count' => Resource::count() ]);
+        return $dataTable->render('customers::employees.index', [ 'count' => Resource::count() ]);
     }
 
     /**

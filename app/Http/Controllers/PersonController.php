@@ -129,10 +129,11 @@ class PersonController extends Controller {
         foreach ([ 'customer', 'provider', 'employee' ] as $type) {
             // create/update resource Type if flag is enabled
             if (filter_var($request->$type['active'], FILTER_VALIDATE_BOOLEAN) ||
-                $request->$type['active'] === null) { // FIXME: why this gets null when value="true"?
+                // FIXME: why this gets null when value="true"?
+                $request->$type['active'] === null) {
+
                 // get ResourceType on current Person
                 $resource_type = $resource->$type()->withTrashed()->firstOrNew();
-                $resource_type->restore();
                 // update values
                 $resource_type->fill( $request->input( $type ) );
 
@@ -142,6 +143,9 @@ class PersonController extends Controller {
                     return back()
                         ->withErrors( $resource_type->errors() )
                         ->withInput();
+
+                // untrash if was trashed
+                if ($resource_type->trashed()) $resource_type->restore();
 
             // delete resource Type if flag is disabled
             } elseif ($resource_type = $resource->$type) {

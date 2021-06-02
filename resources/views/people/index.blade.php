@@ -24,7 +24,7 @@
                 {{ $dataTable->table() }}
                 @include('backend::components.datatable-actions', [
                     'actions'   => [ 'update', 'delete' ],
-                    'label'     => '{resource.business_name}',
+                    'label'     => '{resource.full_name}',
                 ])
             </div>
         @else

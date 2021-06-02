@@ -30,12 +30,6 @@ class ProviderDataTable extends Base\DataTable {
             Column::make('business_name')
                 ->title( __('customers::provider.business_name.0') ),
 
-            Column::make('identity.lastname')
-                ->title( __('customers::provider.lastname.0') ),
-
-            Column::make('identity.firstname')
-                ->title( __('customers::provider.firstname.0') ),
-
             Column::make('actions'),
         ];
     }

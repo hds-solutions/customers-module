@@ -27,6 +27,10 @@ abstract class X_Person extends Base\Model {
         'gender',
     ];
 
+    protected $appends = [
+        'full_name',
+    ];
+
     protected static array $rules = [
         'firstname'     => [ 'required' ],
         'lastname'      => [ 'sometimes', 'nullable' ],
@@ -35,5 +39,9 @@ abstract class X_Person extends Base\Model {
         'phone'         => [ 'sometimes', 'nullable' ],
         'gender'        => [ 'sometimes', 'nullable', 'in:male,female' ],
     ];
+
+    public final function getFullNameAttribute():string {
+        return ($this->lastname !== null ? $this->lastname.', ' : '').$this->firstname;
+    }
 
 }

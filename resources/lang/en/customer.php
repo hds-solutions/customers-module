@@ -24,6 +24,12 @@
         '?' => 'Credit Limit',
     ],
 
+    'credit_used'   => [
+        'Credit Used',
+        '_' => 'Credit Used',
+        '?' => 'Credit Used',
+    ],
+
     'grace_days'    => [
         'Grace Days',
         '_' => 'Grace Days',

@@ -1,7 +1,7 @@
 @extends('backend::layouts.master')
 
-@section('page-name', __('customers::providers.title'))
-@section('description', __('customers::providers.description'))
+@section('page-name', __('customers::customers.title'))
+@section('description', __('customers::customers.description'))
 
 @section('content')
 
@@ -10,11 +10,11 @@
         <div class="row">
             <div class="col-6">
                 <i class="fas fa-table"></i>
-                @lang('customers::providers.index')
+                @lang('customers::customers.index')
             </div>
             <div class="col-6 d-flex justify-content-end">
                 <a href="{{ route('backend.people.create') }}"
-                    class="btn btn-sm btn-primary">@lang('customers::providers.create')</a>
+                    class="btn btn-sm btn-primary">@lang('customers::customers.create')</a>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
                 {{ $dataTable->table() }}
                 @include('backend::components.datatable-actions', [
                     'actions'   => [ 'update', 'delete' ],
-                    'label'     => '{resource.business_name}',
+                    'label'     => '{resource.full_name}',
                 ])
             </div>
         @else
@@ -34,7 +34,7 @@
                 <p class="text-muted">
                     @lang('backend.empty.description')
                     <a href="{{ route('backend.people.create') }}" class="text-custom">
-                        <ins>@lang('customers::providers.create')</ins>
+                        <ins>@lang('customers::customers.create')</ins>
                     </a>
                 </p>
             </div>
