@@ -8,9 +8,9 @@ abstract class X_Person extends Base\Model {
     use BelongsToCompany;
 
     const GENDERS = [
-        ''          => 'customers::customer.gender.unset',
-        'male'      => 'customers::customer.gender.male',
-        'female'    => 'customers::customer.gender.female',
+        ''          => 'customers::person.gender.unset',
+        'male'      => 'customers::person.gender.male',
+        'female'    => 'customers::person.gender.female',
     ];
 
     protected array $orderBy = [

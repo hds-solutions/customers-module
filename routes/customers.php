@@ -1,7 +1,7 @@
 <?php
 
 use HDSSolutions\Finpar\Http\Controllers\{
-    CustomerController,
+    PersonController,
     ProviderController,
 };
 use Illuminate\Support\Facades\Route;
@@ -13,12 +13,12 @@ Route::group([
     // name prefix
     $name_prefix = [ 'as' => 'backend' ];
 
-    Route::resource('customers',        CustomerController::class,  $name_prefix)
-        ->parameters([ 'customers' => 'resource' ])
-        ->name('index', 'backend.customers');
+    Route::resource('people',           PersonController::class,    $name_prefix)
+        ->parameters([ 'people' => 'resource' ])
+        ->name('index', 'backend.people');
 
-    Route::resource('providers',        ProviderController::class,  $name_prefix)
-        ->parameters([ 'providers' => 'resource' ])
-        ->name('index', 'backend.providers');
+    // Route::resource('providers',        ProviderController::class,  $name_prefix)
+    //     ->parameters([ 'providers' => 'resource' ])
+    //     ->name('index', 'backend.providers');
 
 });

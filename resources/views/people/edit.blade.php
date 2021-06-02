@@ -1,6 +1,6 @@
 @extends('backend::layouts.master')
 
-@section('page-name', __('customers::customers.title'))
+@section('page-name', __('customers::people.title'))
 
 @section('content')
 
@@ -9,19 +9,19 @@
         <div class="row">
             <div class="col-6">
                 <i class="fas fa-category-plus"></i>
-                @lang('customers::customers.edit')
+                @lang('customers::people.edit')
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <a href="{{ route('backend.customers.create') }}"
-                    class="btn btn-sm btn-primary">@lang('customers::customers.create')</a>
+                <a href="{{ route('backend.people.create') }}"
+                    class="btn btn-sm btn-primary">@lang('customers::people.create')</a>
             </div>
         </div>
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route('backend.customers.update', $resource) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('backend.people.update', $resource) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
-            @include('customers::customers.form')
+            @include('customers::people.form')
         </form>
     </div>
 </div>

@@ -1,15 +1,9 @@
 <?php return [
 
-    'firstname'     => [
-        'Nombre',
-        '_' => 'Nombre',
-        '?' => 'Nombre',
-    ],
-
-    'lastname'     => [
-        'Apellido',
-        '_' => 'Apellido',
-        '?' => 'Apellido',
+    'active'     => [
+        'Cliente',
+        '_' => 'Habilitar como Cliente?',
+        '?' => 'Habilitar como Cliente?',
     ],
 
     'ftid'          => [
@@ -24,26 +18,16 @@
         '?' => 'Razón Social',
     ],
 
-    'email' => [
-        'Email',
-        '_' => 'Email',
-        '?' => 'Email',
+    'credit_limit' => [
+        'Límite de Crédito',
+        '_' => 'Límite de Crédito',
+        '?' => 'Límite de Crédito',
     ],
 
-    'phone' => [
-        'Teléfono',
-        '_' => 'Teléfono',
-        '?' => 'Teléfono',
-    ],
-
-    'gender' => [
-        'Sexo',
-        '_' => 'Sexo',
-        '?' => 'Sexo',
-
-        'unset'     => 'No establecido',
-        'male'      => 'Hombre',
-        'female'    => 'Mujer',
+    'grace_days' => [
+        'Días de gracia',
+        '_' => 'Días de gracia',
+        '?' => 'Días de gracia extra',
     ],
 
 ];

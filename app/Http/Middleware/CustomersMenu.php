@@ -10,24 +10,24 @@ class CustomersMenu extends Base\Menu {
     public function handle($request, Closure $next) {
         // create a submenu
         $sub = backend()->menu()
-            ->add(__('customers::customers.nav'), [
+            ->add(__('customers::people.nav'), [
                 'icon'  => 'cogs',
             ])->data('priority', 700);
 
         $this
             // append items to submenu
-            ->customers($sub)
+            ->people($sub)
             ->providers($sub);
 
         // continue witn next middleware
         return $next($request);
     }
 
-    private function customers(&$menu) {
-        if (Route::has('backend.customers') && $this->can('customers'))
-            $menu->add(__('customers::customers.nav'), [
-                'route'     => 'backend.customers',
-                'icon'      => 'customers'
+    private function people(&$menu) {
+        if (Route::has('backend.people') && $this->can('people'))
+            $menu->add(__('customers::people.nav'), [
+                'route'     => 'backend.people',
+                'icon'      => 'people'
             ]);
 
         return $this;

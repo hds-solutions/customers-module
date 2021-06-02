@@ -3,12 +3,13 @@
 namespace HDSSolutions\Finpar\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use HDSSolutions\Finpar\DataTables\CustomerDataTable as DataTable;
+use HDSSolutions\Finpar\DataTables\PersonDataTable as DataTable;
 use HDSSolutions\Finpar\Http\Request;
-use HDSSolutions\Finpar\Models\Customer as Resource;
+use HDSSolutions\Finpar\Models\Person as Resource;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 
-class CustomerController extends Controller {
+class PersonController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +25,7 @@ class CustomerController extends Controller {
         if ($request->ajax()) return $dataTable->ajax();
 
         // return view with dataTable
-        return $dataTable->render('customers::customers.index', [ 'count' => Resource::count() ]);
+        return $dataTable->render('customers::people.index', [ 'count' => Resource::count() ]);
     }
 
     /**
@@ -34,7 +35,7 @@ class CustomerController extends Controller {
      */
     public function create() {
         // show create form
-        return view('customers::customers.create');
+        return view('customers::people.create');
     }
 
     /**
@@ -44,6 +45,9 @@ class CustomerController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        // start a transaction
+        DB::beginTransaction();
+
         // create resource
         $resource = new Resource( $request->input() );
 
@@ -54,12 +58,29 @@ class CustomerController extends Controller {
                 ->withErrors( $resource->errors() )
                 ->withInput();
 
+        foreach ([ 'customer', 'provider', 'employee' ] as $type)
+            if (filter_var($request->$type['active'], FILTER_VALIDATE_BOOLEAN) ||
+                $request->$type['active'] === null) { // FIXME: why this gets null when value="true"?
+                // get ResourceType on current Person
+                $resource_type = $resource->$type()->make( $request->input( $type ) );
+
+                // save resource
+                if (!$resource_type->save())
+                    // redirect with errors
+                    return back()
+                        ->withErrors( $resource_type->errors() )
+                        ->withInput();
+            }
+
+        // confirm transaction
+        DB::commit();
+
         // check return type
         return $request->has('only-form') ?
             // redirect to popup callback
             view('backend::components.popup-callback', compact('resource')) :
             // redirect to resources list
-            redirect()->route('backend.customers');
+            redirect()->route('backend.people');
     }
 
     /**
@@ -70,7 +91,7 @@ class CustomerController extends Controller {
      */
     public function show(Resource $resource) {
         // redirect to list
-        return redirect()->route('backend.customers');
+        return redirect()->route('backend.people');
     }
 
     /**
@@ -81,7 +102,7 @@ class CustomerController extends Controller {
      */
     public function edit(Resource $resource) {
         // show edit form
-        return view('customers::customers.edit', compact('resource'));
+        return view('customers::people.edit', compact('resource'));
     }
 
     /**
@@ -92,6 +113,9 @@ class CustomerController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        // start a transaction
+        DB::beginTransaction();
+
         // find resource
         $resource = Resource::findOrFail($id);
 
@@ -102,8 +126,38 @@ class CustomerController extends Controller {
                 ->withErrors( $resource->errors() )
                 ->withInput();
 
+        foreach ([ 'customer', 'provider', 'employee' ] as $type) {
+            // create/update resource Type if flag is enabled
+            if (filter_var($request->$type['active'], FILTER_VALIDATE_BOOLEAN) ||
+                $request->$type['active'] === null) { // FIXME: why this gets null when value="true"?
+                // get ResourceType on current Person
+                $resource_type = $resource->$type()->withTrashed()->firstOrNew();
+                $resource_type->restore();
+                // update values
+                $resource_type->fill( $request->input( $type ) );
+
+                // save resource
+                if (!$resource_type->save())
+                    // redirect with errors
+                    return back()
+                        ->withErrors( $resource_type->errors() )
+                        ->withInput();
+
+            // delete resource Type if flag is disabled
+            } elseif ($resource_type = $resource->$type) {
+                // delete resource type
+                if (!$resource_type->delete(with_identity: false))
+                    // return back with errors
+                    return back()->withInput()
+                        ->withErrors( $resource_type->errors() );
+            }
+        }
+
+        // confirm transaction
+        DB::commit();
+
         // redirect to list
-        return redirect()->route('backend.customers');
+        return redirect()->route('backend.people');
     }
 
     /**
@@ -120,7 +174,7 @@ class CustomerController extends Controller {
             // redirect with errors
             return back();
         // redirect to list
-        return redirect()->route('backend.customers');
+        return redirect()->route('backend.people');
     }
 
 }

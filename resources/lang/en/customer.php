@@ -1,15 +1,9 @@
 <?php return [
 
-    'firstname'     => [
-        'Firstname',
-        '_' => 'Firstname',
-        '?' => 'Firstname',
-    ],
-
-    'lastname'     => [
-        'Lastname',
-        '_' => 'Lastname',
-        '?' => 'Lastname',
+    'active'        => [
+        'Customer',
+        '_' => 'Enable as Customer?',
+        '?' => 'Enable as Customer?',
     ],
 
     'ftid'          => [
@@ -24,26 +18,16 @@
         '?' => 'Business name',
     ],
 
-    'email' => [
-        'Email',
-        '_' => 'Email',
-        '?' => 'Email',
+    'credit_limit'  => [
+        'Credit Limit',
+        '_' => 'Credit Limit',
+        '?' => 'Credit Limit',
     ],
 
-    'phone' => [
-        'Phone',
-        '_' => 'Phone',
-        '?' => 'Phone',
-    ],
-
-    'gender' => [
-        'Gender',
-        '_' => 'Gender',
-        '?' => 'Gender',
-
-        'unset'     => 'Unset',
-        'male'      => 'Male',
-        'female'    => 'Female',
+    'grace_days'    => [
+        'Grace Days',
+        '_' => 'Grace Days',
+        '?' => 'Extra days of Grace',
     ],
 
 ];
