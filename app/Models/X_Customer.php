@@ -25,6 +25,8 @@ abstract class X_Customer extends Base\Model implements AsPerson {
 
     protected $with = [ 'identity' ];
 
+    protected $appends = [ 'credit_used' ];
+
     protected static array $rules = [
         'ftid'          => [ 'required' ],
         'business_name' => [ 'required' ],
@@ -40,6 +42,10 @@ abstract class X_Customer extends Base\Model implements AsPerson {
 
     public function hasCreditEnabled():bool {
         return $this->hasCreditEnabled;
+    }
+
+    public function getCreditUsedAttribute():int {
+        return 0;
     }
 
     public function getCreditAvailableAttribute():int {

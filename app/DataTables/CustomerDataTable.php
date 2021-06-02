@@ -31,10 +31,14 @@ class CustomerDataTable extends Base\DataTable {
                 ->title( __('customers::customer.business_name.0') ),
 
             Column::make('credit_limit')
-                ->title( __('customers::customer.credit_limit.0') ),
+                ->title( __('customers::customer.credit_limit.0') )
+                ->renderRaw('view:customer')
+                ->data( view('customers::customers.datatable.credit_limit')->render() ),
 
             Column::make('credit_used')
-                ->title( __('customers::customer.credit_used.0') ),
+                ->title( __('customers::customer.credit_used.0') )
+                ->renderRaw('view:customer')
+                ->data( view('customers::customers.datatable.credit_used')->render() ),
 
             Column::make('actions'),
         ];
