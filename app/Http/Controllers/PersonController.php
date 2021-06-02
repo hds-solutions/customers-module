@@ -10,6 +10,12 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
 class PersonController extends Controller {
+
+    public function __construct() {
+        // check resource Policy
+        $this->authorizeResource(Resource::class, 'resource');
+    }
+
     /**
      * Display a listing of the resource.
      *
