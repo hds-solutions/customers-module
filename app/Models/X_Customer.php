@@ -54,7 +54,7 @@ abstract class X_Customer extends Base\Model implements AsPerson {
         // if has unlimited credit, return maximun integer
         return $this->has_unlimited_credit ? PHP_INT_MAX :
             // return credit limit - sum(unpaid invoices amount) of this partnerable
-            $this->credit_limit - Invoice::ofPartnerable($this)->paid(false)
+            $this->credit_limit - Invoice::ofPartnerable($this)->paid(false)->get()
                 // only pending amount (total - paid_amount)
                 ->sum(fn($invoice) => $invoice->total - $invoice->paid_amount);
     }
