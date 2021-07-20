@@ -1,8 +1,8 @@
 <?php
 
-namespace HDSSolutions\Finpar\Traits;
+namespace HDSSolutions\Laravel\Traits;
 
-use HDSSolutions\Finpar\Models\Person;
+use HDSSolutions\Laravel\Models\Person;
 
 trait ExtendsPerson {
     use HasIdentity;

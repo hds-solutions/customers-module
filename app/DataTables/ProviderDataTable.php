@@ -1,8 +1,8 @@
 <?php
 
-namespace HDSSolutions\Finpar\DataTables;
+namespace HDSSolutions\Laravel\DataTables;
 
-use HDSSolutions\Finpar\Models\Provider as Resource;
+use HDSSolutions\Laravel\Models\Provider as Resource;
 use Yajra\DataTables\Html\Column;
 
 class ProviderDataTable extends Base\DataTable {

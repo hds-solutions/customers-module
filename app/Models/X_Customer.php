@@ -1,10 +1,10 @@
 <?php
 
-namespace HDSSolutions\Finpar\Models;
+namespace HDSSolutions\Laravel\Models;
 
-use HDSSolutions\Finpar\Contracts\AsPerson;
-use HDSSolutions\Finpar\Traits\BelongsToCompany;
-use HDSSolutions\Finpar\Traits\ExtendsPerson;
+use HDSSolutions\Laravel\Contracts\AsPerson;
+use HDSSolutions\Laravel\Traits\BelongsToCompany;
+use HDSSolutions\Laravel\Traits\ExtendsPerson;
 
 abstract class X_Customer extends Base\Model implements AsPerson {
     use ExtendsPerson;

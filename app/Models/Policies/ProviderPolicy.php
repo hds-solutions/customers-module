@@ -1,9 +1,9 @@
 <?php
 
-namespace hDSSolutions\Finpar\Models\Policies;
+namespace hDSSolutions\Laravel\Models\Policies;
 
-use HDSSolutions\Finpar\Models\Provider as Resource;
-use HDSSolutions\Finpar\Models\User;
+use HDSSolutions\Laravel\Models\Provider as Resource;
+use HDSSolutions\Laravel\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProviderPolicy {

@@ -48,7 +48,7 @@
                     {{-- helper="{{ __('customers::person.phone.?') }}" --}} />
 
                 <x-backend-form-select :resource="$resource ?? null" name="gender"
-                    :values="\HDSSolutions\Finpar\Models\Person::GENDERS"
+                    :values="\HDSSolutions\Laravel\Models\Person::GENDERS"
                     label="{{ __('customers::person.gender.0') }}"
                     placeholder="{{ __('customers::person.gender._') }}"
                     {{-- helper="{{ __('customers::person.gender.?') }}" --}} />

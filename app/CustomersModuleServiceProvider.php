@@ -1,17 +1,17 @@
 <?php
 
-namespace HDSSolutions\Finpar;
+namespace HDSSolutions\Laravel;
 
 use HDSSolutions\Laravel\Modules\ModuleServiceProvider;
 
 class CustomersModuleServiceProvider extends ModuleServiceProvider {
 
     protected array $middlewares = [
-        \HDSSolutions\Finpar\Http\Middleware\CustomersMenu::class,
+        \HDSSolutions\Laravel\Http\Middleware\CustomersMenu::class,
     ];
 
     private $commands = [
-        // \HDSSolutions\Finpar\Commands\Mix::class,
+        // \HDSSolutions\Laravel\Commands\Mix::class,
     ];
 
     public function bootEnv():void {
