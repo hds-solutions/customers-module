@@ -8,13 +8,13 @@
 <div class="card mb-3">
     <div class="card-header">
         <div class="row">
-            <div class="col-6">
-                <i class="fas fa-table"></i>
+            <div class="col-6 d-flex align-items-center">
+                <i class="fas fa-table mr-2"></i>
                 @lang('customers::employees.index')
             </div>
             <div class="col-6 d-flex justify-content-end">
                 <a href="{{ route('backend.people.create') }}"
-                    class="btn btn-sm btn-primary">@lang('customers::employees.create')</a>
+                    class="btn btn-sm btn-outline-primary">@lang('customers::employees.create')</a>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
                 {{ $dataTable->table() }}
                 @include('backend::components.datatable-actions', [
                     'actions'   => [ 'update', 'delete' ],
-                    'label'     => '{resource.business_name}',
+                    'label'     => '{resource.full_name}',
                 ])
             </div>
         @else

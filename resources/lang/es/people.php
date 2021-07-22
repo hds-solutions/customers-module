@@ -1,16 +1,16 @@
 <?php return [
 
-    'nav'           => 'Personas',
+    'nav'           => 'Entidades',
 
-    'title'         => 'Personas',
-    'description'   => 'Personas description',
+    'title'         => 'Entidades',
+    'description'   => 'Entidades description',
 
-    'index'         => 'Personas list',
-    'create'        => 'Create Persona',
-    'show'          => 'Persona Details',
+    'index'         => 'Entidades list',
+    'create'        => 'Create Entidad',
+    'show'          => 'Entidad Details',
 
-    'add'           => 'Create new Persona',
-    'edit'          => 'Edit Persona',
+    'add'           => 'Create new Entidad',
+    'edit'          => 'Edit Entidad',
 
     'save'          => 'Save',
     'save-create'   => 'Save & Import Lines',

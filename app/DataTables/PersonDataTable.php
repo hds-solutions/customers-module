@@ -7,9 +7,10 @@ use Yajra\DataTables\Html\Column;
 
 class PersonDataTable extends Base\DataTable {
 
-    // protected array $with = [
-    //     'customer',
-    // ];
+    protected array $orderBy = [
+        'lastname'  => 'asc',
+        'firstname' => 'asc',
+    ];
 
     public function __construct() {
         parent::__construct(

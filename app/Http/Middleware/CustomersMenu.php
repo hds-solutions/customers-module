@@ -11,7 +11,7 @@ class CustomersMenu extends Base\Menu {
         // create a submenu
         $sub = backend()->menu()
             ->add(__('customers::people.nav'), [
-                'icon'  => 'cogs',
+                'icon'  => 'address-book',
             ])->data('priority', 700);
 
         $this
@@ -29,7 +29,7 @@ class CustomersMenu extends Base\Menu {
         if (Route::has('backend.people') && $this->can('people'))
             $menu->add(__('customers::people.nav'), [
                 'route'     => 'backend.people',
-                'icon'      => 'people'
+                'icon'      => 'handshake'
             ]);
 
         return $this;
@@ -39,7 +39,7 @@ class CustomersMenu extends Base\Menu {
         if (Route::has('backend.customers') && $this->can('customers'))
             $menu->add(__('customers::customers.nav'), [
                 'route'     => 'backend.customers',
-                'icon'      => 'customers'
+                'icon'      => 'users'
             ]);
 
         return $this;
@@ -49,7 +49,7 @@ class CustomersMenu extends Base\Menu {
         if (Route::has('backend.providers') && $this->can('providers'))
             $menu->add(__('customers::providers.nav'), [
                 'route'     => 'backend.providers',
-                'icon'      => 'providers'
+                'icon'      => 'truck-loading'
             ]);
 
         return $this;
@@ -59,7 +59,7 @@ class CustomersMenu extends Base\Menu {
         if (Route::has('backend.employees') && $this->can('employees'))
             $menu->add(__('customers::employees.nav'), [
                 'route'     => 'backend.employees',
-                'icon'      => 'employees'
+                'icon'      => 'user-tie'
             ]);
 
         return $this;

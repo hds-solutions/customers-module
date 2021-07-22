@@ -7,8 +7,8 @@ use Yajra\DataTables\Html\Column;
 
 class ProviderDataTable extends Base\DataTable {
 
-    protected array $with = [
-        'identity',
+    protected array $orderBy = [
+        'business_name' => 'asc',
     ];
 
     public function __construct() {

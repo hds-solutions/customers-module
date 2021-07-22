@@ -16,11 +16,6 @@ class PersonController extends Controller {
         $this->authorizeResource(Resource::class, 'resource');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request, DataTable $dataTable) {
         // check only-form flag
         if ($request->has('only-form'))
@@ -34,22 +29,11 @@ class PersonController extends Controller {
         return $dataTable->render('customers::people.index', [ 'count' => Resource::count() ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create() {
+    public function create(Request $request) {
         // show create form
         return view('customers::people.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request) {
         // start a transaction
         DB::beginTransaction();
@@ -60,22 +44,23 @@ class PersonController extends Controller {
         // save resource
         if (!$resource->save())
             // redirect with errors
-            return back()
-                ->withErrors( $resource->errors() )
-                ->withInput();
+            return back()->withInput()
+                ->withErrors( $resource->errors() );
 
         foreach ([ 'customer', 'provider', 'employee' ] as $type)
+            // create/update resource Type if flag is enabled
             if (filter_var($request->$type['active'], FILTER_VALIDATE_BOOLEAN) ||
-                $request->$type['active'] === null) { // FIXME: why this gets null when value="true"?
+                // FIXME: why this gets null when value="true"?
+                $request->$type['active'] === null) {
+
                 // get ResourceType on current Person
                 $resource_type = $resource->$type()->make( $request->input( $type ) );
 
                 // save resource
                 if (!$resource_type->save())
                     // redirect with errors
-                    return back()
-                        ->withErrors( $resource_type->errors() )
-                        ->withInput();
+                    return back()->withInput()
+                        ->withErrors( $resource_type->errors() );
             }
 
         // confirm transaction
@@ -89,48 +74,25 @@ class PersonController extends Controller {
             redirect()->route('backend.people');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Resource  $resource
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Resource $resource) {
+    public function show(Request $request, Resource $resource) {
         // redirect to list
         return redirect()->route('backend.people');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Resource  $resource
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Resource $resource) {
+    public function edit(Request $request, Resource $resource) {
         // show edit form
         return view('customers::people.edit', compact('resource'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Resource  $resource
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id) {
+    public function update(Request $request, Resource $resource) {
         // start a transaction
         DB::beginTransaction();
-
-        // find resource
-        $resource = Resource::findOrFail($id);
 
         // save resource
         if (!$resource->update( $request->input() ))
             // redirect with errors
-            return back()
-                ->withErrors( $resource->errors() )
-                ->withInput();
+            return back()->withInput()
+                ->withErrors( $resource->errors() );
 
         foreach ([ 'customer', 'provider', 'employee' ] as $type) {
             // create/update resource Type if flag is enabled
@@ -146,9 +108,8 @@ class PersonController extends Controller {
                 // save resource
                 if (!$resource_type->save())
                     // redirect with errors
-                    return back()
-                        ->withErrors( $resource_type->errors() )
-                        ->withInput();
+                    return back()->withInput()
+                        ->withErrors( $resource_type->errors() );
 
                 // untrash if was trashed
                 if ($resource_type->trashed()) $resource_type->restore();
@@ -170,19 +131,13 @@ class PersonController extends Controller {
         return redirect()->route('backend.people');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Resource  $resource
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id) {
-        // find resource
-        $resource = Resource::findOrFail($id);
+    public function destroy(Request $request, Resource $resource) {
         // delete resource
         if (!$resource->delete())
             // redirect with errors
-            return back();
+            return back()
+                ->withErrors( $resource->errors() );
+
         // redirect to list
         return redirect()->route('backend.people');
     }
