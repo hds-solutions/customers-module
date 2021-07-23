@@ -20,17 +20,17 @@ Route::group([
         ->name('index', 'backend.people');
 
     Route::resource('customers',        CustomerController::class,  $name_prefix)
-        ->only([ 'index', 'edit', 'delete' ])
+        ->except([ 'store', 'update' ])
         ->parameters([ 'customers' => 'resource' ])
         ->name('index', 'backend.customers');
 
     Route::resource('providers',        ProviderController::class,  $name_prefix)
-        ->only([ 'index', 'edit', 'delete' ])
+        ->except([ 'store', 'update' ])
         ->parameters([ 'providers' => 'resource' ])
         ->name('index', 'backend.providers');
 
     Route::resource('employees',        EmployeeController::class,  $name_prefix)
-        ->only([ 'index', 'edit', 'delete' ])
+        ->except([ 'store', 'update' ])
         ->parameters([ 'employees' => 'resource' ])
         ->name('index', 'backend.employees');
 
