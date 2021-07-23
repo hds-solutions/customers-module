@@ -30,7 +30,7 @@ class ProviderDataTable extends Base\DataTable {
             Column::make('business_name')
                 ->title( __('customers::provider.business_name.0') ),
 
-            Column::make('actions'),
+            Column::computed('actions'),
         ];
     }
 

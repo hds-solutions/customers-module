@@ -40,7 +40,7 @@ class PersonDataTable extends Base\DataTable {
             Column::make('phone')
                 ->title( __('customers::person.phone.0') ),
 
-            Column::make('actions'),
+            Column::computed('actions'),
         ];
     }
 

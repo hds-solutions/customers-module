@@ -43,7 +43,7 @@ class CustomerDataTable extends Base\DataTable {
                 ->orderable(false)
                 ->searchable(false),
 
-            Column::make('actions'),
+            Column::computed('actions'),
         ];
     }
 

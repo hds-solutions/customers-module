@@ -40,7 +40,7 @@ class EmployeeDataTable extends Base\DataTable {
                 ->renderRaw('view:employee')
                 ->data( view('customers::employees.datatable.salary')->render() ),
 
-            Column::make('actions'),
+            Column::computed('actions'),
         ];
     }
 
