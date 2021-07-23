@@ -27,14 +27,19 @@ class EmployeeController extends Controller {
         return $dataTable->render('customers::employees.index', [ 'count' => Resource::count() ]);
     }
 
+    public function create(Request $request) {
+        // redirect to People.create route
+        return redirect()->action([ PersonController::class, 'create' ], $request->query());
+    }
+
     public function edit(Request $request, Resource $resource) {
         // redirect to People.edit route
-        return redirect()->route('backend.people.edit', $resource);
+        return redirect()->action([ PersonController::class, 'edit' ], $request->query());
     }
 
     public function destroy(Request $request, Resource $resource) {
         // redirect to People.destroy route
-        return redirect()->route('backend.people.destroy', $resource);
+        return redirect()->action([ PersonController::class, 'destroy' ], $request->query());
     }
 
 }

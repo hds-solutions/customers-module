@@ -27,6 +27,11 @@ class ProviderController extends Controller {
         return $dataTable->render('customers::providers.index', [ 'count' => Resource::count() ]);
     }
 
+    public function create(Request $request) {
+        // redirect to People.create route
+        return redirect()->route('backend.people.create');
+    }
+
     public function edit(Request $request, Resource $resource) {
         // redirect to People.edit route
         return redirect()->route('backend.people.edit', $resource);
