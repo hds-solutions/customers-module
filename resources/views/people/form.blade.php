@@ -119,6 +119,16 @@
                     placeholder="customers::employee.salary._"
                     {{-- helper="customers::employee.salary.?" --}} />
 
+                <x-backend-form-foreign :resource="$resource->employee ?? null" name="employee[user_id]"
+                    :values="$users" :default="$resource->employee->user_id ?? null"
+
+                    {{-- foreign="currencies" foreign-add-label="cash::currencies.add" --}}
+                    data-live-search="true" show="full_name"
+
+                    label="customers::employee.user_id.0"
+                    placeholder="customers::employee.user_id._"
+                    {{-- helper="customers::employee.user_id.?" --}} />
+
             </div>
         </div>
     </div>

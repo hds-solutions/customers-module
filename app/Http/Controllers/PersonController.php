@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use HDSSolutions\Laravel\DataTables\PersonDataTable as DataTable;
 use HDSSolutions\Laravel\Http\Request;
 use HDSSolutions\Laravel\Models\Person as Resource;
+use HDSSolutions\Laravel\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
@@ -30,8 +31,11 @@ class PersonController extends Controller {
     }
 
     public function create(Request $request) {
+        // load users
+        $users = User::all();
+
         // show create form
-        return view('customers::people.create');
+        return view('customers::people.create', compact('users'));
     }
 
     public function store(Request $request) {
@@ -80,8 +84,13 @@ class PersonController extends Controller {
     }
 
     public function edit(Request $request, Resource $resource) {
+        // load users
+        $users = User::all();
+
         // show edit form
-        return view('customers::people.edit', compact('resource'));
+        return view('customers::people.edit', compact('resource',
+            'users',
+        ));
     }
 
     public function update(Request $request, Resource $resource) {

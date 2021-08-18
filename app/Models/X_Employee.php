@@ -13,12 +13,14 @@ abstract class X_Employee extends Base\Model implements AsPerson {
 
     protected $fillable = [
         'salary',
+        'user_id',
     ];
 
     protected $with = [ 'identity' ];
 
     protected static array $rules = [
         'salary'    => [ 'required', 'numeric', 'min:0' ],
+        'user_id'   => [ 'sometimes', 'nullable' ],
     ];
 
 }

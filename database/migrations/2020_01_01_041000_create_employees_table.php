@@ -22,6 +22,7 @@ class CreateEmployeesTable extends Migration {
             $table->foreignTo('People', 'id');
             $table->primary([ 'id' ]);
             $table->amount('salary');
+            $table->foreignTo('User');
         });
     }
 

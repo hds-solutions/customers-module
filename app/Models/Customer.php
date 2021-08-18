@@ -2,40 +2,37 @@
 
 namespace HDSSolutions\Laravel\Models;
 
+use HDSSolutions\Laravel\Traits\HasPayments;
+
 class Customer extends X_Customer {
+    use HasPayments;
 
     public function invoices() {
         return $this->morphMany(Invoice::class, 'partnerable');
     }
 
     public function cashLines() {
-        return $this->hasManyThrough(CashLine::class, Payment::class, 'partnerable_id', 'id')
-            ->where('partnerable_type', self::class);
+        return $this->morphMany(CashLine::class, 'partnerable');
     }
 
     public function cards() {
-        return $this->hasManyThrough(Card::class, Payment::class, 'partnerable_id', 'id')
-            ->where('partnerable_type', self::class);
+        return $this->hasManyPayments(Card::class);
     }
 
     public function credits() {
-        return $this->hasManyThrough(Credit::class, Payment::class, 'partnerable_id', 'id')
-            ->where('partnerable_type', self::class);
+        return $this->hasManyPayments(Credit::class);
     }
 
     public function creditNotes() {
-        return $this->hasManyThrough(CreditNote::class, Payment::class, 'partnerable_id', 'id')
-            ->where('partnerable_type', self::class);
+        return $this->hasManyPayments(CreditNote::class);
     }
 
     public function checks() {
-        return $this->hasManyThrough(Check::class, Payment::class, 'partnerable_id', 'id')
-            ->where('partnerable_type', self::class);
+        return $this->hasManyPayments(Check::class);
     }
 
     public function promissoryNotes() {
-        return $this->hasManyThrough(PromissoryNote::class, Payment::class, 'partnerable_id', 'id')
-            ->where('partnerable_type', self::class);
+        return $this->hasManyPayments(PromissoryNote::class);
     }
 
     public function payments() {
@@ -58,7 +55,7 @@ class Customer extends X_Customer {
         // add pending invoices amount
         $this->invoices()->paid(false)
             ->each(fn($invoice) => $creditUsed += $invoice->pending_amount);
-        // TODO: add pending checks
+        // TODO: add pending checks paid=false
         // $this->checks;
         // add pending promissory notes amount
         $this->promissoryNotes()->paid(false)

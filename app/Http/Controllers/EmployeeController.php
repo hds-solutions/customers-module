@@ -34,12 +34,12 @@ class EmployeeController extends Controller {
 
     public function edit(Request $request, Resource $resource) {
         // redirect to People.edit route
-        return redirect()->action([ PersonController::class, 'edit' ], $request->query());
+        return redirect()->action([ PersonController::class, 'edit' ], [ 'resource' => $resource ] + $request->query());
     }
 
     public function destroy(Request $request, Resource $resource) {
         // redirect to People.destroy route
-        return redirect()->action([ PersonController::class, 'destroy' ], $request->query());
+        return redirect()->action([ PersonController::class, 'destroy' ], [ 'resource' => $resource ] + $request->query());
     }
 
 }
