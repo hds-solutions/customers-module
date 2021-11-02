@@ -4,6 +4,4 @@ namespace HDSSolutions\Laravel;
 
 class Customers {
 
-    //
-
 }

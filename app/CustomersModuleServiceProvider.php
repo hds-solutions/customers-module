@@ -14,6 +14,12 @@ class CustomersModuleServiceProvider extends ModuleServiceProvider {
         // \HDSSolutions\Laravel\Commands\Mix::class,
     ];
 
+    private array $components = [
+        'customers' => [
+            \HDSSolutions\Laravel\View\Components\CustomersModal::class,
+        ],
+    ];
+
     public function bootEnv():void {
         // enable config override
         $this->publishes([
@@ -24,6 +30,9 @@ class CustomersModuleServiceProvider extends ModuleServiceProvider {
         $this->loadRoutesFrom( module_path('routes/customers.php') );
         // load views
         $this->loadViewsFrom( module_path('resources/views'), 'customers' );
+        // load view components
+        foreach ($this->components as $group => $components)
+            $this->loadViewComponentsAs($group, $components);
         // load translations
         $this->loadTranslationsFrom( module_path('resources/lang'), 'customers' );
         // load migrations

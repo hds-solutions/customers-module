@@ -44,11 +44,6 @@ class EmployeeDataTable extends Base\DataTable {
         ];
     }
 
-    protected function joins(Builder $query):Builder {
-        // add custom JOIN to people
-        return $query->join('people', 'people.id', 'employees.id');
-    }
-
     protected function searchDocumentno(Builder $query, string $value):Builder {
         // return custom search for Employee.documentno
         return $query->where('people.documentno', 'like', "%$value%");

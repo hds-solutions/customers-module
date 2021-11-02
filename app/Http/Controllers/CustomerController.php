@@ -29,17 +29,17 @@ class CustomerController extends Controller {
 
     public function create(Request $request) {
         // redirect to People.create route
-        return redirect()->route('backend.people.create');
+        return redirect()->action([ PersonController::class, 'create' ], $request->query());
     }
 
     public function edit(Request $request, Resource $resource) {
         // redirect to People.edit route
-        return redirect()->route('backend.people.edit', $resource);
+        return redirect()->action([ PersonController::class, 'edit' ], [ 'resource' => $resource ] + $request->query());
     }
 
     public function destroy(Request $request, Resource $resource) {
         // redirect to People.destroy route
-        return redirect()->route('backend.people.destroy', $resource);
+        return redirect()->action([ PersonController::class, 'destroy' ], [ 'resource' => $resource ] + $request->query());
     }
 
 }

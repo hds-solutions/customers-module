@@ -1,12 +1,13 @@
 <?php
 
-namespace HDSSolutions\Laravel\DataTables;
+namespace HDSSolutions\Laravel\DataTables\Modals;
 
 use HDSSolutions\Laravel\Models\Customer as Resource;
+use HDSSolutions\Laravel\DataTables\Base\DataTable;
 use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\Html\Column;
 
-class CustomerDataTable extends Base\DataTable {
+class CustomersDataTable extends DataTable {
 
     protected array $orderBy = [
         'business_name' => 'asc',
@@ -17,6 +18,18 @@ class CustomerDataTable extends Base\DataTable {
             Resource::class,
             route('backend.customers'),
         );
+    }
+
+    protected function getTableId():string {
+        return class_basename($this->resource).'-modal';
+    }
+
+    protected function parameters():array {
+        return [
+            'info'      => false,
+            'paging'    => false,
+            'searching' => false,
+        ];
     }
 
     protected function getColumns() {
@@ -42,19 +55,7 @@ class CustomerDataTable extends Base\DataTable {
                 ->data( view('customers::customers.datatable.credit_used')->render() )
                 ->orderable(false)
                 ->searchable(false),
-
-            Column::computed('actions'),
         ];
-    }
-
-    protected function filterFtid(Builder $query, $ftid):Builder {
-        // filter by business name
-        return $query->where('ftid', 'LIKE', "%$ftid%");
-    }
-
-    protected function filterBusinessName(Builder $query, $business_name):Builder {
-        // filter by business name
-        return $query->where('business_name', 'LIKE', "%$business_name%");
     }
 
 }
