@@ -35,6 +35,10 @@ abstract class X_Customer extends Base\Model implements AsPerson {
         'grace_days'    => [ 'sometimes', 'nullable', 'numeric', 'min:0' ],
     ];
 
+    protected $attributes = [
+        'grace_days'    => 0,
+    ];
+
     public function getHasCreditEnabledAttribute():bool {
         // null: no credit enabled, 0: unlimited credit enabled, > 0: credit enabled
         return $this->credit_limit !== null;
