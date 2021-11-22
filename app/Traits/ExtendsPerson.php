@@ -38,6 +38,23 @@ trait ExtendsPerson {
         return $query->where($this->getTable().'.'.$this->getKeyName(), $this->getKeyForSaveQuery());
     }
 
+    public function getDirty() {
+        $dirty = parent::getDirty();
+        // prefix table name
+        return array_combine(array_map(fn($key) => $this->getTable().'.'.$key, array_keys($dirty)), $dirty);
+    }
+
+    private bool $deleting = false;
+    protected function runSoftDelete() {
+        $this->deleting = true;
+        parent::runSoftDelete();
+        $this->deleting = false;
+    }
+
+    public function getDeletedAtColumn() {
+        return ($this->deleting ? $this->getTable().'.' : '').parent::getDeletedAtColumn();
+    }
+
     public static function bootExtendsPerson() {
         // add scope lo load people from company only
         self::addGlobalScope(new class implements Scope {

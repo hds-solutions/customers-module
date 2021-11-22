@@ -26,7 +26,7 @@ class CustomersMenu extends Base\Menu {
     }
 
     private function people(&$menu) {
-        if (Route::has('backend.people') && $this->can('people'))
+        if (Route::has('backend.people') && $this->can('people.crud.index'))
             $menu->add(__('customers::people.nav'), [
                 'route'     => 'backend.people',
                 'icon'      => 'handshake'
@@ -36,7 +36,7 @@ class CustomersMenu extends Base\Menu {
     }
 
     private function customers(&$menu) {
-        if (Route::has('backend.customers') && $this->can('customers'))
+        if (Route::has('backend.customers') && $this->can('customers.crud.index'))
             $menu->add(__('customers::customers.nav'), [
                 'route'     => 'backend.customers',
                 'icon'      => 'users'
@@ -46,7 +46,7 @@ class CustomersMenu extends Base\Menu {
     }
 
     private function providers(&$menu) {
-        if (Route::has('backend.providers') && $this->can('providers'))
+        if (Route::has('backend.providers') && $this->can('providers.crud.index'))
             $menu->add(__('customers::providers.nav'), [
                 'route'     => 'backend.providers',
                 'icon'      => 'truck-loading'
@@ -56,7 +56,7 @@ class CustomersMenu extends Base\Menu {
     }
 
     private function employees(&$menu) {
-        if (Route::has('backend.employees') && $this->can('employees'))
+        if (Route::has('backend.employees') && $this->can('employees.crud.index'))
             $menu->add(__('customers::employees.nav'), [
                 'route'     => 'backend.employees',
                 'icon'      => 'user-tie'

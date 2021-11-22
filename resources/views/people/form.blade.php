@@ -56,7 +56,7 @@
             </div>
             <div class="tab-pane" id="customer">
 
-                <x-backend-form-boolean name="customer[active]" value="{{ isset($resource) && $resource->customer !== null }}"
+                <x-backend-form-boolean name="customer[active]" value="{{ isset($resource) && $resource->customer?->trashed() === false }}"
                     label="customers::customer.active.0"
                     placeholder="customers::customer.active._"
                     helper="customers::customer.active.?" />
@@ -88,7 +88,7 @@
             </div>
             <div class="tab-pane" id="provider">
 
-                <x-backend-form-boolean name="provider[active]" value="{{ isset($resource) && $resource->provider !== null }}"
+                <x-backend-form-boolean name="provider[active]" value="{{ isset($resource) && $resource->provider?->trashed() === false }}"
                     label="customers::provider.active.0"
                     placeholder="customers::provider.active._"
                     helper="customers::provider.active.?" />
@@ -108,7 +108,7 @@
             </div>
             <div class="tab-pane" id="employee">
 
-                <x-backend-form-boolean name="employee[active]" value="{{ isset($resource) && $resource->employee !== null }}"
+                <x-backend-form-boolean name="employee[active]" value="{{ isset($resource) && $resource->employee?->trashed() === false }}"
                     label="customers::employee.active.0"
                     placeholder="customers::employee.active._"
                     helper="customers::employee.active.?" />
@@ -126,14 +126,13 @@
                     data-live-search="true" show="full_name"
 
                     label="customers::employee.user_id.0"
-                    placeholder="customers::employee.user_id._"
-                    {{-- helper="customers::employee.user_id.?" --}} />
+                    placeholder="customers::employee.user_id.optional"
+                    helper="customers::employee.user_id.?" />
 
             </div>
         </div>
     </div>
 </div>
-
 
 <x-backend-form-controls
     submit="customers::people.save"

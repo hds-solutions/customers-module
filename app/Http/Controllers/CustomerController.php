@@ -24,10 +24,16 @@ class CustomerController extends Controller {
         if ($request->ajax()) return $dataTable->ajax();
 
         // return view with dataTable
-        return $dataTable->render('customers::customers.index', [ 'count' => Resource::count() ]);
+        return $dataTable->render('customers::customers.index', [
+            'count'                 => Resource::count(),
+            'show_company_selector' => !backend()->companyScoped(),
+        ]);
     }
 
     public function create(Request $request) {
+        // force company selection
+        if (!backend()->companyScoped()) return view('backend::layouts.master', [ 'force_company_selector' => true ]);
+
         // redirect to People.create route
         return redirect()->action([ PersonController::class, 'create' ], $request->query());
     }
@@ -38,8 +44,14 @@ class CustomerController extends Controller {
     }
 
     public function destroy(Request $request, Resource $resource) {
-        // redirect to People.destroy route
-        return redirect()->action([ PersonController::class, 'destroy' ], [ 'resource' => $resource ] + $request->query());
+        // disable Person as customer
+        if (!$resource->delete(with_identity: false))
+            // return back with errors
+            return back()->withInput()
+                ->withErrors( $resource->errors() );
+
+        // redirect to Customers list
+        return redirect()->route('backend.customers');
     }
 
 }

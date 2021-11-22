@@ -27,10 +27,16 @@ class PersonController extends Controller {
         if ($request->ajax()) return $dataTable->ajax();
 
         // return view with dataTable
-        return $dataTable->render('customers::people.index', [ 'count' => Resource::count() ]);
+        return $dataTable->render('customers::people.index', [
+            'count'                 => Resource::count(),
+            'show_company_selector' => !backend()->companyScoped(),
+        ]);
     }
 
     public function create(Request $request) {
+        // force company selection
+        if (!backend()->companyScoped()) return view('backend::layouts.master', [ 'force_company_selector' => true ]);
+
         // load users
         $users = User::all();
 
@@ -47,15 +53,19 @@ class PersonController extends Controller {
 
         // save resource
         if (!$resource->save())
-            // redirect with errors
-            return back()->withInput()
-                ->withErrors( $resource->errors() );
+            // check if request expects a JSON response
+            return $request->expectsJson()
+                // return a JSON response
+                ? response()->json( $resource->errors() )
+                // redirect with errors
+                : back()->withInput()
+                    ->withErrors( $resource->errors() );
 
         foreach ([ 'customer', 'provider', 'employee' ] as $type)
             // create/update resource Type if flag is enabled
-            if (filter_var($request->$type['active'], FILTER_VALIDATE_BOOLEAN) ||
+            if (isset($request->$type) && (filter_var($request->$type['active'], FILTER_VALIDATE_BOOLEAN) ||
                 // FIXME: why this gets null when value="true"?
-                $request->$type['active'] === null) {
+                $request->$type['active'] === null)) {
 
                 // get ResourceType on current Person
                 $resource_type = $resource->$type()->make( $request->input( $type ) );
@@ -69,6 +79,11 @@ class PersonController extends Controller {
 
         // confirm transaction
         DB::commit();
+
+        // check if request expects a json response
+        if ($request->expectsJson()) return response()->json( $resource->fresh()
+            // return resource with relations loaded
+            ->load([ 'customer', 'provider', 'employee' ]) );
 
         // check return type
         return $request->has('only-form') ?
@@ -86,6 +101,13 @@ class PersonController extends Controller {
     public function edit(Request $request, Resource $resource) {
         // load users
         $users = User::all();
+
+        // load relations
+        $resource->load([
+            'customer'  => fn($customer) => $customer->withTrashed(),
+            'provider'  => fn($provider) => $provider->withTrashed(),
+            'employee'  => fn($employee) => $employee->withTrashed(),
+        ]);
 
         // show edit form
         return view('customers::people.edit', compact('resource',

@@ -24,22 +24,28 @@ class ProviderController extends Controller {
         if ($request->ajax()) return $dataTable->ajax();
 
         // return view with dataTable
-        return $dataTable->render('customers::providers.index', [ 'count' => Resource::count() ]);
+        return $dataTable->render('customers::providers.index', [
+            'count'                 => Resource::count(),
+            'show_company_selector' => !backend()->companyScoped(),
+        ]);
     }
 
     public function create(Request $request) {
+        // force company selection
+        if (!backend()->companyScoped()) return view('backend::layouts.master', [ 'force_company_selector' => true ]);
+
         // redirect to People.create route
-        return redirect()->route('backend.people.create');
+        return redirect()->action([ PersonController::class, 'create' ], $request->query());
     }
 
     public function edit(Request $request, Resource $resource) {
         // redirect to People.edit route
-        return redirect()->route('backend.people.edit', $resource);
+        return redirect()->action([ PersonController::class, 'edit' ], [ 'resource' => $resource ] + $request->query());
     }
 
     public function destroy(Request $request, Resource $resource) {
         // redirect to People.destroy route
-        return redirect()->route('backend.people.destroy', $resource);
+        return redirect()->action([ PersonController::class, 'destroy' ], [ 'resource' => $resource ] + $request->query());
     }
 
 }

@@ -13,8 +13,10 @@
                 @lang('customers::customers.index')
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <a href="{{ route('backend.people.create') }}"
+                @can('customers.crud.create')
+                <a href="{{ route('backend.customers.create') }}"
                     class="btn btn-sm btn-outline-primary">@lang('customers::customers.create')</a>
+                @endcan
             </div>
         </div>
     </div>
@@ -23,6 +25,7 @@
             <div class="table-responsive">
                 {{ $dataTable->table() }}
                 @include('backend::components.datatable-actions', [
+                    'resource'  => 'customers',
                     'actions'   => [ 'update', 'delete' ],
                     'label'     => '{resource.full_name}',
                 ])
@@ -32,10 +35,12 @@
                 <h2><i class="fas fa-table text-custom"></i></h2>
                 <h3>@lang('backend.empty.title')</h3>
                 <p class="text-muted">
+                    @can('customers.crud.create')
                     @lang('backend.empty.description')
-                    <a href="{{ route('backend.people.create') }}" class="text-custom">
+                    <a href="{{ route('backend.customers.create') }}" class="text-custom">
                         <ins>@lang('customers::customers.create')</ins>
                     </a>
+                    @endcan
                 </p>
             </div>
         @endif

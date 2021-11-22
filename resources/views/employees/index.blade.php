@@ -13,7 +13,7 @@
                 @lang('customers::employees.index')
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <a href="{{ route('backend.people.create') }}"
+                <a href="{{ route('backend.employees.create') }}"
                     class="btn btn-sm btn-outline-primary">@lang('customers::employees.create')</a>
             </div>
         </div>
@@ -23,6 +23,7 @@
             <div class="table-responsive">
                 {{ $dataTable->table() }}
                 @include('backend::components.datatable-actions', [
+                    'resource'  => 'employees',
                     'actions'   => [ 'update', 'delete' ],
                     'label'     => '{resource.full_name}',
                 ])
@@ -33,7 +34,7 @@
                 <h3>@lang('backend.empty.title')</h3>
                 <p class="text-muted">
                     @lang('backend.empty.description')
-                    <a href="{{ route('backend.people.create') }}" class="text-custom">
+                    <a href="{{ route('backend.employees.create') }}" class="text-custom">
                         <ins>@lang('customers::employees.create')</ins>
                     </a>
                 </p>

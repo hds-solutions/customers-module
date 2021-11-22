@@ -24,10 +24,16 @@ class EmployeeController extends Controller {
         if ($request->ajax()) return $dataTable->ajax();
 
         // return view with dataTable
-        return $dataTable->render('customers::employees.index', [ 'count' => Resource::count() ]);
+        return $dataTable->render('customers::employees.index', [
+            'count'                 => Resource::count(),
+            'show_company_selector' => !backend()->companyScoped(),
+        ]);
     }
 
     public function create(Request $request) {
+        // force company selection
+        if (!backend()->companyScoped()) return view('backend::layouts.master', [ 'force_company_selector' => true ]);
+
         // redirect to People.create route
         return redirect()->action([ PersonController::class, 'create' ], $request->query());
     }
