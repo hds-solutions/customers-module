@@ -3,17 +3,16 @@
     'nav'           => 'Providers',
 
     'title'         => 'Providers',
-    'description'   => 'Providers description',
+    'description'   => '',
 
     'index'         => 'Providers list',
     'create'        => 'Create Provider',
     'show'          => 'Provider Details',
 
-    'add'           => 'Create new Provider',
+    'add'           => 'Add new Provider ...',
     'edit'          => 'Edit Provider',
 
     'save'          => 'Save',
-    'save-create'   => 'Save & Import Lines',
     'cancel'        => 'Cancel',
 
 ];

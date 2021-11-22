@@ -3,17 +3,16 @@
     'nav'           => 'Empleados',
 
     'title'         => 'Empleados',
-    'description'   => 'Descripción Empleados',
+    'description'   => '',
 
     'index'         => 'Listado de Empleados',
-    'create'        => 'Crear Empleado',
+    'create'        => 'Crear nuevo Empleado',
     'show'          => 'Detalles del Empleado',
 
-    'add'           => 'Crear nuevo Empleado',
+    'add'           => 'Agregar nuevo Empleado ...',
     'edit'          => 'Editar Empleado',
 
     'save'          => 'Guardar',
-    'save-create'   => 'Guardar & Import Lines',
     'cancel'        => 'Cancelar',
 
 ];

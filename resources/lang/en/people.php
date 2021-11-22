@@ -3,17 +3,16 @@
     'nav'           => 'Entities',
 
     'title'         => 'Entities',
-    'description'   => 'Entities description',
+    'description'   => '',
 
     'index'         => 'Entities list',
     'create'        => 'Create Entity',
     'show'          => 'Entity Details',
 
-    'add'           => 'Create new Entity',
+    'add'           => 'Add new Entity ...',
     'edit'          => 'Edit Entity',
 
     'save'          => 'Save',
-    'save-create'   => 'Save & Import Lines',
     'cancel'        => 'Cancel',
 
 ];

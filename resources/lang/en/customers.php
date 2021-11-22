@@ -3,17 +3,16 @@
     'nav'           => 'Customers',
 
     'title'         => 'Customers',
-    'description'   => 'Customers description',
+    'description'   => '',
 
     'index'         => 'Customers list',
     'create'        => 'Create Customer',
     'show'          => 'Customer Details',
 
-    'add'           => 'Create new Customer',
+    'add'           => 'Add new Customer ...',
     'edit'          => 'Edit Customer',
 
     'save'          => 'Save',
-    'save-create'   => 'Save & Import Lines',
     'cancel'        => 'Cancel',
 
 ];

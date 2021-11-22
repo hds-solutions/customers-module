@@ -3,17 +3,16 @@
     'nav'           => 'Clientes',
 
     'title'         => 'Clientes',
-    'description'   => 'Descripción Clientes',
+    'description'   => '',
 
     'index'         => 'Lista de Clientes',
-    'create'        => 'Crear Cliente',
+    'create'        => 'Crear nuevo Cliente',
     'show'          => 'Detalles del Cliente',
 
-    'add'           => 'Crear nuevo Cliente',
+    'add'           => 'Agregar nuevo Cliente ...',
     'edit'          => 'Editar Cliente',
 
     'save'          => 'Guardar',
-    'save-create'   => 'Guardar & Importar Líneas',
     'cancel'        => 'Cancelar',
 
 ];

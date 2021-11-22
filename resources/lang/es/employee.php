@@ -12,4 +12,12 @@
         '?' => 'Salario',
     ],
 
+    'user_id'       => [
+        'Usuario',
+        '_' => 'Usuario',
+        '?' => 'Usuario del sistema con el cual esta entidad podrá acceder a la plataforma',
+
+        'optional' => '(opcional) Usuario',
+    ],
+
 ];

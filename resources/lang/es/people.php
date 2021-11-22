@@ -3,17 +3,16 @@
     'nav'           => 'Entidades',
 
     'title'         => 'Entidades',
-    'description'   => 'Entidades description',
+    'description'   => '',
 
-    'index'         => 'Entidades list',
-    'create'        => 'Create Entidad',
-    'show'          => 'Entidad Details',
+    'index'         => 'Listado de Entidades',
+    'create'        => 'Crear nueva Entidad',
+    'show'          => 'Detalles de la Entidad',
 
-    'add'           => 'Create new Entidad',
-    'edit'          => 'Edit Entidad',
+    'add'           => 'Agregar nueva Entidad ...',
+    'edit'          => 'Editar Entidad',
 
-    'save'          => 'Save',
-    'save-create'   => 'Save & Import Lines',
-    'cancel'        => 'Cancel',
+    'save'          => 'Guardar',
+    'cancel'        => 'Cancelar',
 
 ];
